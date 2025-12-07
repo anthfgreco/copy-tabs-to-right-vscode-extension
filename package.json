@@ -3,7 +3,7 @@
   "displayName": "Copy Tabs to Right",
   "publisher": "AnthonyGreco",
   "description": "Copy all open tabs to the right of the current tab",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "engines": {
     "vscode": "^1.67.0"
   },
