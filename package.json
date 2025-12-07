@@ -5,7 +5,7 @@
   "description": "Copy all open tabs to the right of the current tab",
   "version": "1.0.1",
   "engines": {
-    "vscode": "^1.105.0"
+    "vscode": "^1.67.0"
   },
   "categories": [
     "Other"
@@ -39,7 +39,7 @@
     "watch": "tsc -w -p ./"
   },
   "devDependencies": {
-    "@types/vscode": "^1.105.0",
+    "@types/vscode": "^1.67.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
     "@typescript-eslint/eslint-plugin": "^8.42.0",
