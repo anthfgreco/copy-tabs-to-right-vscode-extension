@@ -13,8 +13,8 @@ Copy the current tab and all tabs to its right into your clipboard as a single M
 
 `src/server.ts` and `src/routes/user.ts` are opened tabs:
 
-````md
-### BEGIN FILE: src/server.ts
+``````md
+### START FILE: src/server.ts
 
 ```ts
 import { getUsers } from "./routes/user";
@@ -23,7 +23,7 @@ console.log("Server starting...");
 
 ### END FILE: src/server.ts
 
-### BEGIN FILE: src/routes/user.ts
+### START FILE: src/routes/user.ts
 
 ```ts
 export function getUsers() {
@@ -32,4 +32,4 @@ export function getUsers() {
 ```
 
 ### END FILE: src/routes/user.ts
-````
+``````

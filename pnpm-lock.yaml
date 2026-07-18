@@ -12,7 +12,7 @@ importers:
         specifier: ^10.0.10
         version: 10.0.10
       '@types/node':
-        specifier: 22.x
+        specifier: ~22.20.1
         version: 22.20.1
       '@types/vscode':
         specifier: ^1.67.0
@@ -22,7 +22,7 @@ importers:
         version: 0.0.11
       '@vscode/test-electron':
         specifier: ^2.5.2
-        version: 2.5.2
+        version: 2.5.2(supports-color@8.1.1)
       oxfmt:
         specifier: ^0.59.0
         version: 0.59.0
@@ -1072,10 +1072,10 @@ snapshots:
       supports-color: 9.4.0
       yargs: 17.7.3
 
-  '@vscode/test-electron@2.5.2':
+  '@vscode/test-electron@2.5.2(supports-color@8.1.1)':
     dependencies:
-      http-proxy-agent: 7.0.2
-      https-proxy-agent: 7.0.6
+      http-proxy-agent: 7.0.2(supports-color@8.1.1)
+      https-proxy-agent: 7.0.6(supports-color@8.1.1)
       jszip: 3.10.1
       ora: 8.2.0
       semver: 7.8.5
@@ -1271,14 +1271,14 @@ snapshots:
 
   html-escaper@2.0.2: {}
 
-  http-proxy-agent@7.0.2:
+  http-proxy-agent@7.0.2(supports-color@8.1.1):
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
-  https-proxy-agent@7.0.6:
+  https-proxy-agent@7.0.6(supports-color@8.1.1):
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@8.1.1)

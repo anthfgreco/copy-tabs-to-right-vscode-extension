@@ -103,38 +103,34 @@ async function loadTextDocuments(uris: vscode.Uri[]): Promise<vscode.TextDocumen
   return docs;
 }
 
-/** Build Markdown with headings + fenced code blocks for each document. */
-function buildMarkdown(documents: vscode.TextDocument[]): string {
+/** Build Markdown with path markers and fenced code blocks for each document. */
+export function buildMarkdown(documents: vscode.TextDocument[]): string {
   const parts: string[] = [];
+  const codeFence = "`````";
 
   for (const doc of documents) {
     const uri = doc.uri;
+    const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri);
 
-    const hasWorkspaceFolder = Boolean(vscode.workspace.getWorkspaceFolder(uri));
-    const pathForHeading = hasWorkspaceFolder
+    const pathForHeading = workspaceFolder
       ? vscode.workspace.asRelativePath(uri, false)
       : uri.scheme === "file"
         ? uri.fsPath
         : uri.toString(true);
 
-    const languageId = doc.languageId ?? "";
-    const codeFence = languageId ? `\`\`\`${languageId}` : "```";
-
     parts.push(
-      `### BEGIN FILE: ${escapeMarkdownHeading(pathForHeading)}\n`,
-      `${codeFence}\n${doc.getText()}\n\`\`\``,
-      `\n### END FILE: ${escapeMarkdownHeading(pathForHeading)}`,
-      "", // blank line separator
+      `### START FILE: ${pathForHeading}`,
+      "",
+      `${codeFence}${doc.languageId}`,
+      doc.getText().trimEnd(),
+      codeFence,
+      "",
+      `### END FILE: ${pathForHeading}`,
+      "",
     );
   }
 
   return parts.join("\n");
-}
-
-/** Escape minimal heading characters that can break Markdown rendering. */
-function escapeMarkdownHeading(text: string): string {
-  // Keep simple: escape only Markdown control characters that matter in headings.
-  return text.replace(/[*_`]/g, (m) => "\\" + m);
 }
 
 // VS Code calls this on extension unload (not used here).
