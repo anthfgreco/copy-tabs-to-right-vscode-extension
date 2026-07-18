@@ -2,6 +2,8 @@
 
 Copy the current tab and all tabs to its right into your clipboard as a single Markdown snippet, ideal for pasting into an LLM prompt.
 
+[Install from the Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=AnthonyGreco.copy-tabs-to-right).
+
 ## How to use
 
 1. Arrange your tabs as you like.
