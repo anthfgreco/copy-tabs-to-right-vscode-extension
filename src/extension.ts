@@ -13,9 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 
       // Gather URIs from the tabs we care about (text + diff: modified side).
       const uris = dedupeUris(
-        tabs
-          .map(getPrimaryUriFromTab)
-          .filter((uri): uri is vscode.Uri => Boolean(uri))
+        tabs.map(getPrimaryUriFromTab).filter((uri): uri is vscode.Uri => Boolean(uri)),
       );
 
       if (uris.length === 0) {
@@ -28,9 +26,9 @@ export function activate(context: vscode.ExtensionContext) {
       await vscode.env.clipboard.writeText(markdown);
 
       void vscode.window.showInformationMessage(
-        `Copied ${documents.length} file(s) to clipboard as Markdown.`
+        `Copied ${documents.length} file(s) to clipboard as Markdown.`,
       );
-    }
+    },
   );
 
   context.subscriptions.push(disposable);
@@ -41,9 +39,7 @@ function getActiveAndRightTabs(): vscode.Tab[] {
   const activeGroup = vscode.window.tabGroups.activeTabGroup;
   if (!activeGroup || !activeGroup.activeTab) return [];
 
-  const activeIndex = activeGroup.tabs.findIndex(
-    (tab) => tab === activeGroup.activeTab
-  );
+  const activeIndex = activeGroup.tabs.findIndex((tab) => tab === activeGroup.activeTab);
   const isActiveIndexValid = activeIndex >= 0;
   if (!isActiveIndexValid) return [];
 
@@ -82,12 +78,8 @@ function dedupeUris(uris: vscode.Uri[]): vscode.Uri[] {
 }
 
 /** Get currently open TextDocument for a URI, else open it from disk. */
-async function getTextDocumentForUri(
-  uri: vscode.Uri
-): Promise<vscode.TextDocument | undefined> {
-  const openDoc = vscode.workspace.textDocuments.find(
-    (d) => d.uri.toString() === uri.toString()
-  );
+async function getTextDocumentForUri(uri: vscode.Uri): Promise<vscode.TextDocument | undefined> {
+  const openDoc = vscode.workspace.textDocuments.find((d) => d.uri.toString() === uri.toString());
   if (openDoc) return openDoc;
 
   try {
@@ -100,9 +92,7 @@ async function getTextDocumentForUri(
 }
 
 /** Load documents for URIs, filtering to text documents only. */
-async function loadTextDocuments(
-  uris: vscode.Uri[]
-): Promise<vscode.TextDocument[]> {
+async function loadTextDocuments(uris: vscode.Uri[]): Promise<vscode.TextDocument[]> {
   const docs: vscode.TextDocument[] = [];
   for (const uri of uris) {
     const doc = await getTextDocumentForUri(uri);
@@ -120,14 +110,12 @@ function buildMarkdown(documents: vscode.TextDocument[]): string {
   for (const doc of documents) {
     const uri = doc.uri;
 
-    const hasWorkspaceFolder = Boolean(
-      vscode.workspace.getWorkspaceFolder(uri)
-    );
+    const hasWorkspaceFolder = Boolean(vscode.workspace.getWorkspaceFolder(uri));
     const pathForHeading = hasWorkspaceFolder
       ? vscode.workspace.asRelativePath(uri, false)
       : uri.scheme === "file"
-      ? uri.fsPath
-      : uri.toString(true);
+        ? uri.fsPath
+        : uri.toString(true);
 
     const languageId = doc.languageId ?? "";
     const codeFence = languageId ? `\`\`\`${languageId}` : "```";
@@ -136,7 +124,7 @@ function buildMarkdown(documents: vscode.TextDocument[]): string {
       `### BEGIN FILE: ${escapeMarkdownHeading(pathForHeading)}\n`,
       `${codeFence}\n${doc.getText()}\n\`\`\``,
       `\n### END FILE: ${escapeMarkdownHeading(pathForHeading)}`,
-      "" // blank line separator
+      "", // blank line separator
     );
   }
 

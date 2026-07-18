@@ -1,21 +1,36 @@
 {
   "name": "copy-tabs-to-right",
   "displayName": "Copy Tabs to Right",
-  "publisher": "AnthonyGreco",
-  "description": "Copy all open tabs to the right of the current tab",
   "version": "1.0.2",
-  "engines": {
-    "vscode": "^1.67.0"
-  },
+  "description": "Copy all open tabs to the right of the current tab",
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
-  "main": "./out/extension.js",
-  "icon": "assets/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/anthfgreco/copy-tabs-to-right-vscode-extension.git"
+  },
+  "publisher": "AnthonyGreco",
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "pnpm compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "check": "pnpm fmt:check && pnpm lint && pnpm compile"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.67.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "oxfmt": "^0.59.0",
+    "oxlint": "^1.74.0",
+    "typescript": "^5.9.2"
   },
   "contributes": {
     "commands": [
@@ -33,20 +48,10 @@
       }
     ]
   },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -w -p ./"
+  "activationEvents": [],
+  "icon": "assets/icon.png",
+  "engines": {
+    "vscode": "^1.67.0"
   },
-  "devDependencies": {
-    "@types/vscode": "^1.67.0",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "22.x",
-    "@typescript-eslint/eslint-plugin": "^8.42.0",
-    "@typescript-eslint/parser": "^8.42.0",
-    "eslint": "^9.34.0",
-    "typescript": "^5.9.2",
-    "@vscode/test-cli": "^0.0.11",
-    "@vscode/test-electron": "^2.5.2"
-  }
+  "packageManager": "pnpm@11.12.0"
 }
