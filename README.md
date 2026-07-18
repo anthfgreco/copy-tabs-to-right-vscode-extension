@@ -13,23 +13,24 @@ Copy the current tab and all tabs to its right into your clipboard as a single M
 
 `src/server.ts` and `src/routes/user.ts` are opened tabs:
 
+<!-- prettier-ignore -->
 ``````md
 ### START FILE: src/server.ts
 
-```ts
+`````ts
 import { getUsers } from "./routes/user";
 console.log("Server starting...");
-```
+`````
 
 ### END FILE: src/server.ts
 
 ### START FILE: src/routes/user.ts
 
-```ts
+`````ts
 export function getUsers() {
   return [];
 }
-```
+`````
 
 ### END FILE: src/routes/user.ts
 ``````
